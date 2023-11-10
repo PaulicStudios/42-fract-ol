@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:37:20 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/08 15:49:39 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/09 15:55:27 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ double	ft_map(double x, double in_min, double in_max, double out_min, double out
 	return ((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
 }
 
-void	ft_prefill_window(t_window *window)
+void	ft_prefill_window(t_window *window, t_fractal *fractal)
 {
 	window->height = HEIGHT;
 	window->width = WIDTH;
 	window->scale = 1;
+	window->fractal = fractal;
 }

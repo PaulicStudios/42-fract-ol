@@ -7,17 +7,9 @@
 # include <math.h>
 # include <stdio.h>
 
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH 700
+# define HEIGHT 500
 
-typedef struct	s_window
-{
-	mlx_t		*mlx;
-	mlx_image_t	*image;
-	int			width;
-	int			height;
-	double		scale;
-}				t_window;
 typedef struct	s_fractal
 {
 	double	ca;
@@ -26,13 +18,23 @@ typedef struct	s_fractal
 	double	bb;
 	int		iter_max;
 	int		limit;
-	int		(*ft_calc)(double, double, struct s_fractal *, t_window *);
+	int		(*ft_calc)(double, double, struct s_fractal *, struct s_window *);
 }			t_fractal;
+typedef struct	s_window
+{
+	mlx_t		*mlx;
+	mlx_image_t	*image;
+	t_fractal	*fractal;
+	int			width;
+	int			height;
+	double		scale;
+}				t_window;
 
-int		ft_create_image(t_window *window, t_fractal *fractal);
+int		ft_create_image(t_window *window);
+void	ft_resize_hook(int width, int height, t_window *window);
 int		ft_get_rgba(int r, int g, int b, int a);
-void	ft_prefill_window(t_window *window);
-int	ft_calc_mandelbrot(double a, double b, t_fractal *fractal, t_window *window);
+void	ft_prefill_window(t_window *window, t_fractal *fractal);
+int		ft_calc_mandelbrot(double a, double b, t_fractal *fractal, t_window *window);
 double	ft_map(double x, double in_min, double in_max, double out_min, double out_max);
 void	ft_parse_input(int argc, char **argv, t_fractal *fractal);
 
