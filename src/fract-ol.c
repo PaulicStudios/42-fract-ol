@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 20:13:06 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/09 15:57:20 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:37:02 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	window.mlx = mlx_init(window.width, window.height, "Fract-ol", true);
 	if (!window.mlx)
 		return (1);
-	mlx_resize_hook(window.mlx, ft_resize_hook, &window);
+	mlx_resize_hook(window.mlx, ft_resize_hook, (void *) &window);
 	ft_rebuild_fractal(&window);
 	mlx_loop(window.mlx);
 	return (0);
