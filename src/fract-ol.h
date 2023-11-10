@@ -6,6 +6,7 @@
 # include "ft_printf.h"
 # include <math.h>
 # include <stdio.h>
+# include <stdbool.h>
 
 # define WIDTH 700
 # define HEIGHT 500
@@ -29,6 +30,7 @@ struct	s_window
 	int			width;
 	int			height;
 	double		scale;
+	bool		rebuilding;
 };
 
 void	ft_resize_hook(int width, int height, void *window);

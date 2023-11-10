@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:40:59 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/10 18:49:42 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/10 19:20:29 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ void	ft_rebuild_fractal(t_window *window)
 	mlx_image_t	*image;
 	mlx_image_t	*old_image;
 
+	if (window->rebuilding)
+		return ;
+	window->rebuilding = true;
 	image = ft_create_image(window);
 	if (!image)
 		return ; //exit
@@ -52,12 +55,15 @@ void	ft_rebuild_fractal(t_window *window)
 	window->image = image;
 	mlx_image_to_window(window->mlx, window->image, 0, 0);
 	mlx_delete_image(window->mlx, old_image);
+	window->rebuilding = false;
 }
 
 void	ft_resize_hook(int width, int height, void *param)
 {
 	t_window	*window;
 
+	ft_printf("Width: %d\n", width);
+	ft_printf("Height: %d\n", height);
 	window = (t_window *) param;
 	window->width = width;
 	window->height = height;
