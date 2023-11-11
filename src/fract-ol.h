@@ -34,6 +34,7 @@ struct	s_window
 };
 
 void	ft_resize_hook(int width, int height, void *window);
+void	ft_scroll_hook(double xdelta, double ydelta, void *param);
 int		ft_get_rgba(int r, int g, int b, int a);
 void	ft_prefill_window(t_window *window, t_fractal *fractal);
 int		ft_calc_mandelbrot(double a, double b, t_window *window);

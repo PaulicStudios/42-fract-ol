@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:40:59 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/11 13:21:15 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/11 16:50:56 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,18 @@ void	ft_resize_hook(int width, int height, void *param)
 	window = (t_window *) param;
 	window->width = width;
 	window->height = height;
+	ft_rebuild_fractal(window);
+}
+
+void	ft_scroll_hook(double xdelta, double ydelta, void *param)
+{
+	t_window	*window;
+
+	xdelta = 0;
+	window = (t_window *) param;
+	if (ydelta > 0)
+		window->scale *= 1.1;
+	else
+		window->scale /= 1.1;
 	ft_rebuild_fractal(window);
 }
