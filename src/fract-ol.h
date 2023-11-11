@@ -8,8 +8,8 @@
 # include <stdio.h>
 # include <stdbool.h>
 
-# define WIDTH 700
-# define HEIGHT 500
+# define WIDTH 800
+# define HEIGHT 800
 
 typedef struct s_window t_window;
 typedef struct	s_fractal

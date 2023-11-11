@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:37:20 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/09 15:55:27 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/11 13:20:34 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,6 @@ void	ft_prefill_window(t_window *window, t_fractal *fractal)
 	window->width = WIDTH;
 	window->scale = 1;
 	window->fractal = fractal;
+	window->image = NULL;
+	window->rebuilding = false;
 }
