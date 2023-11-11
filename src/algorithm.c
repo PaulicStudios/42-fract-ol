@@ -6,22 +6,27 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:34:20 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/11 16:43:38 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/11 19:34:57 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fract-ol.h"
 
-int	ft_calc_mandelbrot(double a, double b, t_window *window)
+int	ft_calc_mandelbrot(double x, double y, t_window *window)
 {
-	int	iter;
+	int		iter;
+	double	a;
+	double	b;
 	t_fractal	*fractal;
 
 	fractal = window->fractal;
 	// a = ft_map(a, 0, window->height, -2.5 * window->scale, 1.5 * window->scale * ((double) window->width/window->height));
 	// b = ft_map(b, 0, window->width, -2 * window->scale, 2 * window->scale * ((double) window->height/window->width));
-	a = ft_map(a, 0, window->height, (-2 - ((double) window->height / window->width)) * window->scale, (2 + ((double) window->height / window->width)) * window->scale);
-	b = ft_map(b, 0, window->width, (-2 - ((double) window->width / window->height)) * window->scale, (2 + ((double) window->width / window->height)) * window->scale);
+	a = ft_map(x, 0, 800, -2, 2);
+	b = ft_map(y, 0, 800, -2, 2);
+
+	// a = ft_map(a, 0, window->height, (-2.5 - ((double) window->height / window->width)) * window->scale, (1.5 + ((double) window->height / window->width)) * window->scale);
+	// b = ft_map(b, 0, window->width, (-2 - ((double) window->width / window->height)) * window->scale, (2 + ((double) window->width / window->height)) * window->scale);
 	fractal->ca = a;
 	fractal->cb = b;
 	iter = 0;

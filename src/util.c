@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:37:20 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/11 13:20:34 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/11 16:59:33 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_get_rgba(int r, int g, int b, int a)
 {
-	return (r << 24 | g << 16 | b << 8 | a);
+	return ((unsigned int)r << 24 | (unsigned int)g << 16 | (unsigned int)b << 8 | (unsigned int)a);
 }
 
 double	ft_map(double x, double in_min, double in_max, double out_min, double out_max)

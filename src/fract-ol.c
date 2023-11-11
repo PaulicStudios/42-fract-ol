@@ -6,11 +6,26 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 20:13:06 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/11 16:44:56 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/11 18:59:54 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fract-ol.h"
+
+void	ft_exit(char *msg)
+{
+	if (msg)
+		ft_printf("Error: %s\n", msg);
+	exit(1);
+}
+
+void	ft_exit_loop(char *msg, t_window *window)
+{
+	if (msg)
+		ft_printf("Error: %s\n", msg);
+	mlx_close_window(window->mlx);
+	exit(1);
+}
 
 int	main(int argc, char **argv)
 {
@@ -21,10 +36,12 @@ int	main(int argc, char **argv)
 	ft_prefill_window(&window, &fractal);
 	window.mlx = mlx_init(window.width, window.height, "Fract-ol", true);
 	if (!window.mlx)
-		return (1);
+		ft_exit("Could not initialize mlx");
 	ft_rebuild_fractal(&window);
 	mlx_resize_hook(window.mlx, ft_resize_hook, (void *) &window);
 	mlx_scroll_hook(window.mlx, ft_scroll_hook, &window);
+	mlx_key_hook(window.mlx, ft_key_hook, &window);
 	mlx_loop(window.mlx);
+	mlx_terminate(window.mlx);
 	return (0);
 }

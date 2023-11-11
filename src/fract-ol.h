@@ -33,13 +33,27 @@ struct	s_window
 	bool		rebuilding;
 };
 
+//fract-ol.c
+void	ft_exit(char *msg);
+void	ft_exit_loop(char *msg, t_window *window);
+
+//input_parser.c
+void	ft_parse_input(int argc, char **argv, t_fractal *fractal);
+
+//algorithm.c
+int		ft_calc_mandelbrot(double a, double b, t_window *window);
+
+//mlxmanager.c
+void	ft_rebuild_fractal(t_window *window);
+
+//mlxhooks.c
 void	ft_resize_hook(int width, int height, void *window);
 void	ft_scroll_hook(double xdelta, double ydelta, void *param);
+void	ft_key_hook(mlx_key_data_t keydata, void *param);
+
+//utils.c
 int		ft_get_rgba(int r, int g, int b, int a);
 void	ft_prefill_window(t_window *window, t_fractal *fractal);
-int		ft_calc_mandelbrot(double a, double b, t_window *window);
 double	ft_map(double x, double in_min, double in_max, double out_min, double out_max);
-void	ft_parse_input(int argc, char **argv, t_fractal *fractal);
-void	ft_rebuild_fractal(t_window *window);
 
 #endif
