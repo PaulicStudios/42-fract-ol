@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:34:20 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/12 15:04:03 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/12 16:16:13 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	ft_calc_mandelbrot(double x, double y, t_window *window)
 	fractal = window->fractal;
 	// a = ft_map(a, 0, window->height, -2.5 * window->scale, 1.5 * window->scale * ((double) window->width/window->height));
 	// b = ft_map(b, 0, window->width, -2 * window->scale, 2 * window->scale * ((double) window->height/window->width));
-	a = ft_map(x, 0, 800, -1.5, 2.5);
-	b = ft_map(y, 0, 800, -1, 3);
+	a = ft_map(x, 0 + window->offset_x, 800 + window->offset_x, -1.5, 2.5);
+	b = ft_map(y, 0 + window->offset_y, 800 + window->offset_y, -1, 3);
 	a = a - ((double) window->width / window->height);
 	b = b - ((double) window->height / window->width);
 	a = a * window->scale;

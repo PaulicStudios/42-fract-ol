@@ -22,6 +22,12 @@ typedef struct	s_fractal
 	int		limit;
 	int		(*ft_calc)(double, double, struct s_window *);
 }			t_fractal;
+typedef struct	s_mouse
+{
+	int		last_x;
+	int		last_y;
+	bool	button_pressed;
+}			t_mouse;
 struct	s_window
 {
 	mlx_t		*mlx;
@@ -29,8 +35,11 @@ struct	s_window
 	t_fractal	*fractal;
 	int			width;
 	int			height;
+	int			offset_x;
+	int			offset_y;
 	double		scale;
 	bool		rebuilding;
+	t_mouse		mouse;
 };
 
 //fract-ol.c
@@ -50,6 +59,7 @@ void	ft_rebuild_fractal(t_window *window);
 void	ft_resize_hook(int width, int height, void *window);
 void	ft_scroll_hook(double xdelta, double ydelta, void *param);
 void	ft_key_hook(mlx_key_data_t keydata, void *param);
+void	ft_loop_hook(void *param);
 
 //utils.c
 int		ft_get_rgba(int r, int g, int b, int a);
