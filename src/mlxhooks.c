@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:53:50 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/12 16:21:35 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/12 18:56:56 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,22 @@ void	ft_resize_hook(int width, int height, void *param)
 void	ft_scroll_hook(double xdelta, double ydelta, void *param)
 {
 	t_window	*window;
+	int			mouse_x;
+	int			mouse_y;
+	double		factor;
 
 	xdelta = 0;
 	window = (t_window *) param;
 	if (ydelta > 0)
-		window->scale *= 1.1;
+		factor = 1.1;
 	else
-		window->scale /= 1.1;
+		factor = 0.9;
+	window->scale *= factor;
+	mlx_get_mouse_pos(window->mlx, &mouse_x, &mouse_y);
+	// double	cursur_relativ_x = (double) mouse_x / (double) window->width;
+	// double	cursur_relativ_y = (double) mouse_y / (double) window->height;
+	window->offset_x += (mouse_x - window->width / 2);
+	window->offset_y += (mouse_y - window->height / 2);
 	ft_rebuild_fractal(window);
 }
 

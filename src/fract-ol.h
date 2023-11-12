@@ -35,8 +35,8 @@ struct	s_window
 	t_fractal	*fractal;
 	int			width;
 	int			height;
-	int			offset_x;
-	int			offset_y;
+	double			offset_x;
+	double			offset_y;
 	double		scale;
 	bool		rebuilding;
 	t_mouse		mouse;
