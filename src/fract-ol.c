@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 20:13:06 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/12 16:10:21 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/12 16:21:22 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	ft_exit_loop(char *msg, t_window *window)
 	if (msg)
 		ft_printf("Error: %s\n", msg);
 	mlx_close_window(window->mlx);
-	exit(1);
 }
 
 int	main(int argc, char **argv)

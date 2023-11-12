@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:53:50 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/12 16:16:38 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/12 16:21:35 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,17 @@ void	ft_key_hook(mlx_key_data_t keydata, void *param)
 	if (keydata.key == MLX_KEY_ESCAPE)
 	{
 		ft_exit_loop(NULL, window);
+		return ;
 	}
-	ft_printf("Key: %d| Action: %d\n", keydata.key, keydata.action);
+	else if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
+		window->offset_y -= 15;
+	else if (keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
+		window->offset_y += 15;
+	else if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
+		window->offset_x -= 15;
+	else if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
+		window->offset_x += 15;
+	ft_rebuild_fractal(window);
 }
 
 void	ft_loop_hook(void *param)
