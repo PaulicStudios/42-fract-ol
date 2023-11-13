@@ -10,7 +10,11 @@
             "request": "launch",
             "program": "${workspaceFolder}/fractol",
             "args": [
-				"mandelbrot"
+				"julia",
+                "-ca",
+                "-0.7",
+                "-cb",
+                "0.2",
 			],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

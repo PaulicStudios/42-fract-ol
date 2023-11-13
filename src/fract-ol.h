@@ -51,6 +51,7 @@ void	ft_parse_input(int argc, char **argv, t_fractal *fractal);
 
 //algorithm.c
 int		ft_calc_mandelbrot(double a, double b, t_window *window);
+int		ft_calc_julia(double x, double y, t_window *window);
 
 //mlxmanager.c
 void	ft_rebuild_fractal(t_window *window);
