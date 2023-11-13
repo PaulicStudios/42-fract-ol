@@ -16,7 +16,6 @@
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include "libft.h"
 # include "ft_printf.h"
-# include <math.h>
 # include <stdio.h>
 # include <stdbool.h>
 
@@ -75,6 +74,7 @@ void		ft_parse_input(int argc, char **argv, t_fract *fract);
 //algorithm.c
 int			ft_calc_mandelbrot(double a, double b, t_win *win);
 int			ft_calc_julia(double x, double y, t_win *win);
+int			ft_calc_ship(double x, double y, t_win *win);
 
 //mlxmanager.c
 void		ft_rebuild_fract(t_win *win);
@@ -91,5 +91,6 @@ void		ft_prefill_win(t_win *win, t_fract *fract);
 double		ft_map(double x, t_ft_map map);
 t_ft_map	ft_create_map(double in_min, double in_max,
 				double out_min, double out_max);
+double		ft_abs(double x);
 
 #endif

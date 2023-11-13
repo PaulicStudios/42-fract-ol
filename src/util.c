@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:37:20 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/13 18:32:14 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/13 19:22:40 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,11 @@ void	ft_prefill_win(t_win *win, t_fract *fract)
 	win->rebuilding = false;
 	win->off_x = 0;
 	win->off_y = 0;
+}
+
+double	ft_abs(double x)
+{
+	if (x < 0)
+		return (-x);
+	return (x);
 }
