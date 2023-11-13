@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 20:13:06 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/12 17:14:19 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:31:03 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(window.mlx, ft_loop_hook, &window);
 	mlx_loop(window.mlx);
 	mlx_terminate(window.mlx);
+	// system("leaks fractol");
 	return (0);
 }
