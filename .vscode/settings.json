@@ -1,5 +1,6 @@
 {
 	"files.associations": {
-		"fract-ol.h": "c"
+		"fract-ol.h": "c",
+		"algorithm": "c"
 	}
 }

@@ -6,64 +6,63 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:40:59 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/13 17:39:16 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/13 18:33:31 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fract-ol.h"
+#include "fractol.h"
 
-int	ft_color(int iter, t_fractal *fractal)
+int	ft_color(int iter, t_fract *fract)
 {
 	int		r;
 	int		g;
 	int		b;
 	double	t;
 
-	t = (double) iter / (double) fractal->iter_max;
+	t = (double) iter / (double) fract->iter_max;
 	r = (int)(9 * (1 - t) * t * t * t * 255);
 	g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
 	b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
 	return (ft_get_rgba(r, g, b, 255));
 }
 
-void	ft_fill_image(t_window *window)
+void	ft_fill_image(t_win *win)
 {
-	int			x;
-	int			y;
-	int			iter;
-	t_fractal	*fractal;
+	int		x;
+	int		y;
+	int		iter;
+	t_fract	*fract;
 
-	fractal = window->fractal;
+	fract = win->fract;
 	x = 1;
 	y = 1;
-	while (y < window->height)
+	while (y < win->height)
 	{
 		x = 0;
-		while (x < window->width)
+		while (x < win->width)
 		{
-			iter = fractal->ft_calc(x, y, window);
-			mlx_put_pixel(window->image, x, y, ft_color(iter, fractal));
+			iter = fract->ft_calc(x, y, win);
+			mlx_put_pixel(win->image, x, y, ft_color(iter, fract));
 			x++;
 		}
 		y++;
 	}
 }
 
-void	ft_rebuild_fractal(t_window *window)
+void	ft_rebuild_fract(t_win *win)
 {
-	if (window->rebuilding)
+	if (win->rebuilding)
 		return ;
-	window->rebuilding = true;
-	if (!window->image)
+	win->rebuilding = true;
+	if (!win->image)
 	{
-		window->image = mlx_new_image(window->mlx, window->width, window->height);
-		if (!window->image)
+		win->image = mlx_new_image(win->mlx, win->width, win->height);
+		if (!win->image)
 			ft_exit("Could not create image");
-		if (mlx_image_to_window(window->mlx, window->image, 0, 0) == -1) {
-			ft_exit("Could not put image to window");
-		};
+		if (mlx_image_to_window(win->mlx, win->image, 0, 0) == -1)
+			ft_exit("Could not put image to win");
 	}
-	mlx_resize_image(window->image, window->width, window->height);
-	ft_fill_image(window);
-	window->rebuilding = false;
+	mlx_resize_image(win->image, win->width, win->height);
+	ft_fill_image(win);
+	win->rebuilding = false;
 }

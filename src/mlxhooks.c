@@ -6,102 +6,111 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:53:50 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/13 17:35:35 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/13 18:39:46 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fract-ol.h"
+#include "fractol.h"
 
 void	ft_resize_hook(int width, int height, void *param)
 {
-	t_window	*window;
+	t_win	*win;
 
-	window = (t_window *) param;
-	window->width = width;
-	window->height = height;
-	ft_rebuild_fractal(window);
+	win = (t_win *) param;
+	win->width = width;
+	win->height = height;
+	ft_rebuild_fract(win);
 }
 
 void	ft_scroll_hook(double xdelta, double ydelta, void *param)
 {
-	t_window	*window;
-	int			mouse_x;
-	int			mouse_y;
-	double		factor;
+	t_win	*win;
+	double	mouse_x;
+	double	mouse_y;
+	double	factor;
+	t_mouse	mouse;
 
 	xdelta = 0;
-	window = (t_window *) param;
+	win = (t_win *) param;
 	if (ydelta > 0)
 		factor = 1.1;
 	else
 		factor = 0.9;
-	double zoom_factor = 1 / factor;
-	mlx_get_mouse_pos(window->mlx, &mouse_x, &mouse_y);
-	double mouse_relativ_x = (double)mouse_x - ((double)window->width / 2);
-	double mouse_relativ_y = (double)mouse_y - ((double)window->height / 2);
-	mouse_relativ_x *= 1.35;
-	mouse_relativ_y *= 1.35;
-	window->offset_x = zoom_factor * (window->offset_x - mouse_relativ_x) + mouse_relativ_x;
-	window->offset_y = zoom_factor * (window->offset_y - mouse_relativ_y) + mouse_relativ_y;
-	window->scale *= factor;
-	ft_rebuild_fractal(window);
+	win->scale *= factor;
+	factor = 1 / factor;
+	mlx_get_mouse_pos(win->mlx, &mouse.last_x, &mouse.last_y);
+	mouse_x = mouse.last_x;
+	mouse_y = mouse.last_y;
+	mouse_x = (double)mouse_x - ((double)win->width / 2);
+	mouse_y = (double)mouse_y - ((double)win->height / 2);
+	mouse_x *= 1.35;
+	mouse_y *= 1.35;
+	win->off_x = factor * (win->off_x - mouse_x) + mouse_x;
+	win->off_y = factor * (win->off_y - mouse_y) + mouse_y;
+	ft_rebuild_fract(win);
 }
 
 void	ft_key_hook(mlx_key_data_t keydata, void *param)
 {
-	t_window	*window;
+	t_win	*win;
 
-	window = (t_window *) param;
+	win = (t_win *) param;
 	if (keydata.key == MLX_KEY_ESCAPE)
 	{
-		ft_exit_loop(NULL, window);
+		ft_exit_loop(NULL, win);
 		return ;
 	}
 	else if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
-		window->offset_y += 15;
+		win->off_y += 15;
 	else if (keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
-		window->offset_y -= 15;
+		win->off_y -= 15;
 	else if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
-		window->offset_x += 15;
+		win->off_x += 15;
 	else if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
-		window->offset_x -= 15;
-	ft_rebuild_fractal(window);
+		win->off_x -= 15;
+	ft_rebuild_fract(win);
+}
+
+void	ft_drag_mouse(int mouse_x, int mouse_y, t_win *win)
+{
+	if (win->mouse.button_pressed)
+	{
+		win->off_x += mouse_x - win->mouse.last_x;
+		win->off_y += mouse_y - win->mouse.last_y;
+		win->mouse.last_x = mouse_x;
+		win->mouse.last_y = mouse_y;
+		ft_rebuild_fract(win);
+	}
+	else
+	{
+		win->mouse.button_pressed = true;
+		win->mouse.last_x = mouse_x;
+		win->mouse.last_y = mouse_y;
+	}
 }
 
 void	ft_loop_hook(void *param)
 {
-	t_window	*window;
-	int			mouse_x;
-	int			mouse_y;
+	t_win	*win;
+	int		mouse_x;
+	int		mouse_y;
 
-	window = (t_window *) param;
-	if (mlx_is_mouse_down(window->mlx, MLX_MOUSE_BUTTON_LEFT))
+	win = (t_win *) param;
+	if (mlx_is_mouse_down(win->mlx, MLX_MOUSE_BUTTON_LEFT))
 	{
-		mlx_get_mouse_pos(window->mlx, &mouse_x, &mouse_y);
-		if (mlx_is_key_down(window->mlx, MLX_KEY_LEFT_SHIFT) || mlx_is_key_down(window->mlx, MLX_KEY_RIGHT_SHIFT))
+		mlx_get_mouse_pos(win->mlx, &mouse_x, &mouse_y);
+		if (mlx_is_key_down(win->mlx, MLX_KEY_LEFT_SHIFT)
+			|| mlx_is_key_down(win->mlx, MLX_KEY_RIGHT_SHIFT))
 		{
-			window->fractal->ca = ft_map(mouse_x, 0, window->width, -1, 1);
-			window->fractal->cb = ft_map(mouse_y, 0, window->height, -1, 1);
-			ft_rebuild_fractal(window);
+			win->fract->ca = ft_map(mouse_x,
+					ft_create_map(0, win->width, -1, 1));
+			win->fract->cb = ft_map(mouse_y,
+					ft_create_map(0, win->height, -1, 1));
+			ft_rebuild_fract(win);
 		}
 		else
-		{
-			if (window->mouse.button_pressed)
-			{
-				window->offset_x += mouse_x - window->mouse.last_x;
-				window->offset_y += mouse_y - window->mouse.last_y;
-				window->mouse.last_x = mouse_x;
-				window->mouse.last_y = mouse_y;
-				ft_rebuild_fractal(window);
-			}
-			else
-			{
-				window->mouse.button_pressed = true;
-				window->mouse.last_x = mouse_x;
-				window->mouse.last_y = mouse_y;
-			}
-		}
+			ft_drag_mouse(mouse_x, mouse_y, win);
 	}
 	else
-		window->mouse.button_pressed = false;
+		win->mouse.button_pressed = false;
 }
