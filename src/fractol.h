@@ -22,6 +22,12 @@
 # define WIDTH 800
 # define HEIGHT 800
 
+typedef enum e_type
+{
+	MANDELBROT,
+	JULIA,
+	SHIP
+}	t_type;
 typedef struct s_win	t_win;
 typedef struct s_fract
 {
@@ -35,6 +41,7 @@ typedef struct s_fract
 	double	ca_bb;
 	int		iter_max;
 	int		limit;
+	t_type	type;
 	int		(*ft_calc)(double, double, struct s_win *);
 }			t_fract;
 typedef struct s_mouse
@@ -71,6 +78,11 @@ void		ft_exit_loop(char *msg, t_win *win);
 //input_parser.c
 void		ft_parse_input(int argc, char **argv, t_fract *fract);
 
+//setup_fract.c
+void		ft_setup_mandelbrot(t_fract *fract);
+void		ft_setup_julia(t_fract *fract);
+void		ft_setup_ship(t_fract *fract);
+
 //algorithm.c
 int			ft_calc_mandelbrot(double a, double b, t_win *win);
 int			ft_calc_julia(double x, double y, t_win *win);
@@ -84,6 +96,12 @@ void		ft_resize_hook(int width, int height, void *win);
 void		ft_scroll_hook(double xdelta, double ydelta, void *param);
 void		ft_key_hook(mlx_key_data_t keydata, void *param);
 void		ft_loop_hook(void *param);
+
+//hook_helper.c
+void		ft_drag_mouse(int mouse_x, int mouse_y, t_win *win);
+void		ft_drag_mouse_shift(int mouse_x, int mouse_y, t_win *win);
+void		ft_normal_zoom(double *mouse_x, double *mouse_y, t_win *win);
+void		ft_ship_zoom(double *mouse_x, double *mouse_y, t_win *win);
 
 //utils.c
 int			ft_get_rgba(int r, int g, int b, int a);

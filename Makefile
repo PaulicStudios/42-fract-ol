@@ -1,6 +1,6 @@
 SRCDIR = src
 OBJDIR = build
-SRCS = fractol.c algorithm.c input_parser.c mlxmanager.c util.c mlxhooks.c
+SRCS = fractol.c algorithm.c input_parser.c setup_fract.c mlxmanager.c util.c mlxhooks.c hook_helper.c
 OBJS = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
 LIBMLX = lib/MLX42
 LIBFT = lib/libft

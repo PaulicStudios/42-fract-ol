@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:34:20 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/13 19:31:49 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/13 20:21:20 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	ft_calc_ship(double x, double y, t_win *win)
 	t_fract	*fract;
 
 	fract = win->fract;
-	fract->a = (ft_map(x, ft_create_map(0 + win->off_x, 800 + win->off_x, -2.5,
+	fract->a = (ft_map(x, ft_create_map(0 + win->off_x, 800 + win->off_x, -1,
 					1)) - ((double) win->width / win->height)) * win->scale;
 	fract->b = (ft_map(y, ft_create_map(0 + win->off_y, 800 + win->off_y, -1,
 					1)) - ((double) win->height / win->width)) * win->scale;
