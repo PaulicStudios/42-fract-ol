@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:53:50 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/12 18:56:56 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/13 12:52:41 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,16 @@ void	ft_scroll_hook(double xdelta, double ydelta, void *param)
 	mlx_get_mouse_pos(window->mlx, &mouse_x, &mouse_y);
 	// double	cursur_relativ_x = (double) mouse_x / (double) window->width;
 	// double	cursur_relativ_y = (double) mouse_y / (double) window->height;
-	window->offset_x += (mouse_x - window->width / 2);
-	window->offset_y += (mouse_y - window->height / 2);
+	if (factor > 1)
+	{
+		window->offset_x += ((double) mouse_x / (double) window->width - 0.5) * window->scale;
+		window->offset_y += ((double) mouse_y / (double) window->height - 0.5) * window->scale;
+	}
+	else
+	{
+		window->offset_x -= ((double) mouse_x / (double) window->width - 0.5) * window->scale;
+		window->offset_y -= ((double) mouse_y / (double) window->height - 0.5) * window->scale;
+	}
 	ft_rebuild_fractal(window);
 }
 
@@ -55,13 +63,13 @@ void	ft_key_hook(mlx_key_data_t keydata, void *param)
 		return ;
 	}
 	else if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
-		window->offset_y -= 15;
-	else if (keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
 		window->offset_y += 15;
+	else if (keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
+		window->offset_y -= 15;
 	else if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
-		window->offset_x -= 15;
-	else if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
 		window->offset_x += 15;
+	else if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
+		window->offset_x -= 15;
 	ft_rebuild_fractal(window);
 }
 

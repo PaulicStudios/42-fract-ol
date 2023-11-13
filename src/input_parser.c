@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:11:35 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/11 18:56:14 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/13 14:08:50 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	ft_parse_input(int argc, char **argv, t_fractal *fractal)
 	if (ft_strncmp(argv[1], "mandelbrot", 11) == 0)
 	{
 		fractal->ft_calc = ft_calc_mandelbrot;
-		fractal->limit = 8;
-		fractal->iter_max = 50;
+		fractal->limit = 4;
+		fractal->iter_max = 30;
 	}
 	// else if (ft_strncmp(argv[1], "julia") == 0)
 		// fractal->ft_calc = ft_calc_julia;

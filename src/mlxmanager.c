@@ -6,11 +6,25 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:40:59 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/11 19:04:25 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/13 13:59:52 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fract-ol.h"
+
+int	ft_color(int iter, t_fractal *fractal)
+{
+	int		r;
+	int		g;
+	int		b;
+	double	t;
+
+	t = (double) iter / (double) fractal->iter_max;
+	r = (int)(9 * (1 - t) * t * t * t * 255);
+	g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
+	b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
+	return (ft_get_rgba(r, g, b, 255));
+}
 
 void	ft_fill_image(t_window *window)
 {
@@ -28,7 +42,7 @@ void	ft_fill_image(t_window *window)
 		while (x < window->width)
 		{
 			iter = fractal->ft_calc(x, y, window);
-			mlx_put_pixel(window->image, x, y, ft_get_rgba(255, 255, 255, ft_map(iter, 0, fractal->iter_max, 0, 255)));
+			mlx_put_pixel(window->image, x, y, ft_color(iter, fractal));
 			x++;
 		}
 		y++;
