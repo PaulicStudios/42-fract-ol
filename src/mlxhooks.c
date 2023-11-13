@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:53:50 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/13 12:52:41 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:19:18 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,19 +83,28 @@ void	ft_loop_hook(void *param)
 	if (mlx_is_mouse_down(window->mlx, MLX_MOUSE_BUTTON_LEFT))
 	{
 		mlx_get_mouse_pos(window->mlx, &mouse_x, &mouse_y);
-		if (window->mouse.button_pressed)
+		if (mlx_is_key_down(window->mlx, MLX_KEY_LEFT_SHIFT) || mlx_is_key_down(window->mlx, MLX_KEY_RIGHT_SHIFT))
 		{
-			window->offset_x += mouse_x - window->mouse.last_x;
-			window->offset_y += mouse_y - window->mouse.last_y;
-			window->mouse.last_x = mouse_x;
-			window->mouse.last_y = mouse_y;
+			window->fractal->ca = ft_map(mouse_x, 0, window->width, -1, 1);
+			window->fractal->cb = ft_map(mouse_y, 0, window->height, -1, 1);
 			ft_rebuild_fractal(window);
 		}
 		else
 		{
-			window->mouse.button_pressed = true;
-			window->mouse.last_x = mouse_x;
-			window->mouse.last_y = mouse_y;
+			if (window->mouse.button_pressed)
+			{
+				window->offset_x += mouse_x - window->mouse.last_x;
+				window->offset_y += mouse_y - window->mouse.last_y;
+				window->mouse.last_x = mouse_x;
+				window->mouse.last_y = mouse_y;
+				ft_rebuild_fractal(window);
+			}
+			else
+			{
+				window->mouse.button_pressed = true;
+				window->mouse.last_x = mouse_x;
+				window->mouse.last_y = mouse_y;
+			}
 		}
 	}
 	else

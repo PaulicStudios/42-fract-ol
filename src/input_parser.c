@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:11:35 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/13 16:00:34 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:11:36 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void	ft_parse_input(int argc, char **argv, t_fractal *fractal)
 		fractal->ft_calc = ft_calc_julia;
 		fractal->limit = 4;
 		fractal->iter_max = 30;
-		fractal->ca = -1;
-		fractal->cb = 0.6;
+		fractal->ca = -0.78;
+		fractal->cb = 0.1275;
 	}
 	else
 		ft_print_usage();
