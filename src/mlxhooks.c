@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:53:50 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/14 13:42:28 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/14 13:51:45 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	ft_scroll_hook(double xdelta, double ydelta, void *param)
 	mouse_y = mouse.last_y;
 	win->scale *= factor;
 	mouse_x = mouse_x - (win->width / 2);
-	mouse_y = mouse_y - ((win->height / ((double) win->height / win->width) / 2));
+	mouse_y = mouse_y - ((win->height / ((double) win->height / win->width)
+				/ 2));
 	factor = 1 / factor;
 	win->off_x = factor * (win->off_x + mouse_x) - mouse_x;
 	win->off_y = factor * (win->off_y + mouse_y) - mouse_y;
@@ -66,23 +67,7 @@ void	ft_key_hook(mlx_key_data_t keydata, void *param)
 		win->off_x -= 15;
 	else if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
 		win->off_x += 15;
-	else if (keydata.key == MLX_KEY_1)
-		ft_setup_julia(win);
-	else if (keydata.key == MLX_KEY_2)
-		ft_setup_mandelbrot(win);
-	else if (keydata.key == MLX_KEY_3)
-		ft_setup_ship(win);
-	else if (keydata.key == MLX_KEY_4)
-		ft_setup_fern(win);
-	else if (keydata.key == MLX_KEY_MINUS)
-		win->fract->iter_max += 2;
-	else if (keydata.key == MLX_KEY_EQUAL)
-		win->fract->iter_max -= 2;
-	else if (keydata.key == MLX_KEY_LEFT_BRACKET)
-		win->fract->limit += 0.1;
-	else if (keydata.key == MLX_KEY_RIGHT_BRACKET)
-		win->fract->limit -= 0.1;
-	else
+	else if (!ft_key_change_values(keydata, win))
 		return ;
 	ft_rebuild_fract(win);
 }

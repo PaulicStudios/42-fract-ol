@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"fract-ol.h": "c",
-		"algorithm": "c"
+		"algorithm": "c",
+		"__node_handle": "c"
 	}
 }

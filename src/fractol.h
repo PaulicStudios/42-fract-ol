@@ -102,6 +102,7 @@ void		ft_loop_hook(void *param);
 //hook_helper.c
 void		ft_drag_mouse(int mouse_x, int mouse_y, t_win *win);
 void		ft_drag_mouse_shift(int mouse_x, int mouse_y, t_win *win);
+bool		ft_key_change_values(mlx_key_data_t keydata, t_win *win);
 
 //utils.c
 int			ft_get_rgba(int r, int g, int b, int a);
