@@ -64,13 +64,6 @@ struct	s_win
 	bool		rebuilding;
 	t_mouse		mouse;
 };
-typedef struct s_ft_map
-{
-	double	in_min;
-	double	in_max;
-	double	out_min;
-	double	out_max;
-}			t_ft_map;
 
 //fract-ol.c
 void		ft_exit(char *msg);
