@@ -41,7 +41,7 @@ typedef struct s_fract
 	double	ca_aa;
 	double	ca_bb;
 	int		iter_max;
-	int		limit;
+	double	limit;
 	t_type	type;
 	int		(*ft_calc)(double, double, struct s_win *);
 }			t_fract;

@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:53:50 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/14 13:11:48 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/14 13:34:13 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,24 @@ void	ft_key_hook(mlx_key_data_t keydata, void *param)
 		win->off_x -= 15;
 	else if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
 		win->off_x += 15;
+	else if (keydata.key == MLX_KEY_1)
+		ft_setup_julia(win);
+	else if (keydata.key == MLX_KEY_2)
+		ft_setup_mandelbrot(win);
+	else if (keydata.key == MLX_KEY_3)
+		ft_setup_ship(win);
+	else if (keydata.key == MLX_KEY_4)
+		ft_setup_fern(win);
+	else if (keydata.key == MLX_KEY_SPACE)
+		win->fract->iter_max += 10;
+	else if (keydata.key == MLX_KEY_BACKSPACE)
+		win->fract->iter_max -= 10;
+	else if (keydata.key == MLX_KEY_LEFT_BRACKET)
+		win->fract->limit += 0.1;
+	else if (keydata.key == MLX_KEY_RIGHT_BRACKET)
+		win->fract->limit -= 0.1;
+	else
+		return ;
 	ft_rebuild_fract(win);
 }
 
