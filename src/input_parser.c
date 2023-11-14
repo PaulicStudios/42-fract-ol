@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:11:35 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/13 20:42:02 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/14 13:24:18 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,19 @@ void	ft_parse_options(int argc, char **argv, t_fract *fract)
 	}
 }
 
-void	ft_parse_input(int argc, char **argv, t_fract *fract)
+void	ft_parse_input(int argc, char **argv, t_win *win)
 {
 	if (argc < 2)
 		ft_print_usage();
 	if (ft_strncmp(argv[1], "mandelbrot", 11) == 0)
-		ft_setup_mandelbrot(fract);
+		ft_setup_mandelbrot(win);
 	else if (ft_strncmp(argv[1], "julia", 6) == 0)
-		ft_setup_julia(fract);
+		ft_setup_julia(win);
 	else if (ft_strncmp(argv[1], "ship", 5) == 0)
-		ft_setup_ship(fract);
+		ft_setup_ship(win);
 	else if (ft_strncmp(argv[1], "fern", 5) == 0)
-		ft_setup_fern(fract);
+		ft_setup_fern(win);
 	else
 		ft_print_usage();
-	ft_parse_options(argc, argv, fract);
+	ft_parse_options(argc, argv, win->fract);
 }

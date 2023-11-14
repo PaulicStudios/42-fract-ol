@@ -77,13 +77,13 @@ void		ft_exit(char *msg);
 void		ft_exit_loop(char *msg, t_win *win);
 
 //input_parser.c
-void		ft_parse_input(int argc, char **argv, t_fract *fract);
+void		ft_parse_input(int argc, char **argv, t_win *win);
 
 //setup_fract.c
-void		ft_setup_mandelbrot(t_fract *fract);
-void		ft_setup_julia(t_fract *fract);
-void		ft_setup_ship(t_fract *fract);
-void		ft_setup_fern(t_fract *fract);
+void		ft_setup_mandelbrot(t_win *win);
+void		ft_setup_julia(t_win *win);
+void		ft_setup_ship(t_win *win);
+void		ft_setup_fern(t_win *win);
 
 //algorithm.c
 int			ft_calc_mandelbrot(double a, double b, t_win *win);

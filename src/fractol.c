@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract-ol.c                                         :+:      :+:    :+:   */
+/*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 20:13:06 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/13 18:33:21 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/14 13:21:15 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	main(int argc, char **argv)
 	t_win	win;
 	t_fract	fract;
 
-	ft_parse_input(argc, argv, &fract);
 	ft_prefill_win(&win, &fract);
+	ft_parse_input(argc, argv, &win);
 	win.mlx = mlx_init(win.width, win.height, "Fract-ol", true);
 	if (!win.mlx)
 		ft_exit("Could not initialize mlx");
