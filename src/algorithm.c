@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:34:20 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/13 20:21:20 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/14 13:09:43 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ int	ft_calc_mandelbrot(double x, double y, t_win *win)
 	t_fract	*fract;
 
 	fract = win->fract;
-	fract->a = (ft_map(x, ft_create_map(0 + win->off_x, 800 + win->off_x, -1.5,
-					2.5)) - ((double) win->width / win->height)) * win->scale;
-	fract->b = (ft_map(y, ft_create_map(0 + win->off_y, 800 + win->off_y, -1,
-					3)) - ((double) win->height / win->width)) * win->scale;
+	fract->a = (x / win->width - 0.5) * win->scale;
+	fract->b = (y / (win->height / ((double) win->height / win->width)) - 0.5) * win->scale;
 	fract->ca = fract->a;
 	fract->cb = fract->b;
 	iter = 0;
@@ -48,10 +46,8 @@ int	ft_calc_julia(double x, double y, t_win *win)
 	t_fract	*fract;
 
 	fract = win->fract;
-	fract->a = (ft_map(x, ft_create_map(0 + win->off_x, 800 + win->off_x, -1.5,
-					2.5)) - ((double) win->width / win->height)) * win->scale;
-	fract->b = (ft_map(y, ft_create_map(0 + win->off_y, 800 + win->off_y, -1,
-					3)) - ((double) win->height / win->width)) * win->scale;
+	fract->a = (x / win->width - 0.5) * win->scale;
+	fract->b = (y / (win->height / ((double) win->height / win->width)) - 0.5) * win->scale;
 	iter = 0;
 	while (iter < fract->iter_max)
 	{
@@ -74,10 +70,8 @@ int	ft_calc_ship(double x, double y, t_win *win)
 	t_fract	*fract;
 
 	fract = win->fract;
-	fract->a = (ft_map(x, ft_create_map(0 + win->off_x, 800 + win->off_x, -1,
-					1)) - ((double) win->width / win->height)) * win->scale;
-	fract->b = (ft_map(y, ft_create_map(0 + win->off_y, 800 + win->off_y, -1,
-					1)) - ((double) win->height / win->width)) * win->scale;
+	fract->a = (x / win->width - 0.5) * win->scale;
+	fract->b = (y / (win->height / ((double) win->height / win->width)) - 0.5) * win->scale;
 	fract->ca = fract->a;
 	fract->cb = fract->b;
 	iter = 0;

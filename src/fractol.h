@@ -26,7 +26,8 @@ typedef enum e_type
 {
 	MANDELBROT,
 	JULIA,
-	SHIP
+	SHIP,
+	FERN
 }	t_type;
 typedef struct s_win	t_win;
 typedef struct s_fract
@@ -82,6 +83,7 @@ void		ft_parse_input(int argc, char **argv, t_fract *fract);
 void		ft_setup_mandelbrot(t_fract *fract);
 void		ft_setup_julia(t_fract *fract);
 void		ft_setup_ship(t_fract *fract);
+void		ft_setup_fern(t_fract *fract);
 
 //algorithm.c
 int			ft_calc_mandelbrot(double a, double b, t_win *win);
@@ -100,15 +102,10 @@ void		ft_loop_hook(void *param);
 //hook_helper.c
 void		ft_drag_mouse(int mouse_x, int mouse_y, t_win *win);
 void		ft_drag_mouse_shift(int mouse_x, int mouse_y, t_win *win);
-void		ft_normal_zoom(double *mouse_x, double *mouse_y, t_win *win);
-void		ft_ship_zoom(double *mouse_x, double *mouse_y, t_win *win);
 
 //utils.c
 int			ft_get_rgba(int r, int g, int b, int a);
 void		ft_prefill_win(t_win *win, t_fract *fract);
-double		ft_map(double x, t_ft_map map);
-t_ft_map	ft_create_map(double in_min, double in_max,
-				double out_min, double out_max);
 double		ft_abs(double x);
 
 #endif

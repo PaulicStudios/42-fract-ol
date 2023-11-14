@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 20:26:42 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/13 20:27:18 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/14 13:14:13 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,11 @@ void	ft_setup_ship(t_fract *fract)
 	fract->type = SHIP;
 	fract->ft_calc = ft_calc_ship;
 	fract->limit = 4;
+	fract->iter_max = 100;
+}
+
+void	ft_setup_fern(t_fract *fract)
+{
+	fract->type = SHIP;
 	fract->iter_max = 100;
 }

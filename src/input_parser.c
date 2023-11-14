@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:11:35 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/13 20:27:10 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/13 20:42:02 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_print_usage(void)
 {
-	ft_printf("Usage: ./fract-ol <mandelbrot|julia|ship> --options\n"
+	ft_printf("Usage: ./fract-ol <mandelbrot|julia|ship|fern> --options\n"
 		"Available options:\n"
 		"-i <int>	Maximum number of iterations\n"
 		"-l <int>	Limit for the absolute value of the complex number\n"
@@ -52,6 +52,8 @@ void	ft_parse_input(int argc, char **argv, t_fract *fract)
 		ft_setup_julia(fract);
 	else if (ft_strncmp(argv[1], "ship", 5) == 0)
 		ft_setup_ship(fract);
+	else if (ft_strncmp(argv[1], "fern", 5) == 0)
+		ft_setup_fern(fract);
 	else
 		ft_print_usage();
 	ft_parse_options(argc, argv, fract);

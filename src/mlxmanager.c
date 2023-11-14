@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:40:59 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/13 18:33:31 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/14 13:14:40 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_fill_image(t_win *win)
 		x = 0;
 		while (x < win->width)
 		{
-			iter = fract->ft_calc(x, y, win);
+			iter = fract->ft_calc(x + win->off_x, y + win->off_y, win);
 			mlx_put_pixel(win->image, x, y, ft_color(iter, fract));
 			x++;
 		}
