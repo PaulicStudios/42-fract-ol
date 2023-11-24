@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:53:50 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/24 17:20:49 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:45:56 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ void	ft_scroll_hook(double xdelta, double ydelta, void *param)
 
 	xdelta = 0;
 	win = (t_win *) param;
-	if (ydelta > 0)
-		factor = 1.1;
-	else
-		factor = 0.9;
+	factor = ft_get_factor(ydelta, win);
 	mlx_get_mouse_pos(win->mlx, &mouse.last_x, &mouse.last_y);
 	mouse_x = mouse.last_x;
 	mouse_y = mouse.last_y;

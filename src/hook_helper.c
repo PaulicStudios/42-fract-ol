@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 20:29:43 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/24 17:20:23 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:46:45 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,25 @@ void	ft_scroll_not_fern(double *mouse_x, double *mouse_y, double *factor,
 	*mouse_y = *mouse_y - ((win->height / ((double) win->height / win->width)
 				/ 2));
 	*factor = 1 / *factor;
+}
+
+double	ft_get_factor(double ydelta, t_win *win)
+{
+	double	factor;
+
+	if (win->fract->type == FERN)
+	{
+		if (ydelta > 0)
+			factor = 1.1;
+		else
+			factor = 0.9;
+	}
+	else
+	{
+		if (ydelta > 0)
+			factor = 0.9;
+		else
+			factor = 1.1;
+	}
+	return (factor);
 }
