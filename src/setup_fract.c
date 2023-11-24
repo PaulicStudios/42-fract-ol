@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 20:26:42 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/14 13:37:13 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/24 11:47:56 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_setup_fern(t_win *win)
 	t_fract	*fract;
 
 	fract = win->fract;
-	fract->type = SHIP;
+	fract->type = FERN;
 	fract->iter_max = 100;
 	win->scale = 4;
 	win->off_x = 0;

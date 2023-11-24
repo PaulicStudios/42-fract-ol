@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:40:59 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/14 19:33:54 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/24 11:45:23 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,12 @@ void	ft_rebuild_fract(t_win *win)
 	{
 		win->image = mlx_new_image(win->mlx, win->width, win->height);
 		if (!win->image)
-			ft_exit("Could not create image");
+			ft_exit_loop("Could not create image", win);
 		if (mlx_image_to_window(win->mlx, win->image, 0, 0) == -1)
-			ft_exit("Could not put image to win");
+			ft_exit_loop("Could not put image to win", win);
 	}
-	mlx_resize_image(win->image, win->width, win->height);
+	if (!mlx_resize_image(win->image, win->width, win->height))
+		ft_exit_loop("Could not resize image", win);
 	ft_fill_image(win);
 	win->rebuilding = false;
 }
