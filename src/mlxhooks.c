@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:53:50 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/24 17:45:56 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:58:40 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,27 @@ void	ft_resize_hook(int width, int height, void *param)
 	win->width = width;
 	win->height = height;
 	ft_rebuild_fract(win);
+}
+
+double	ft_get_factor(double ydelta, t_win *win)
+{
+	double	factor;
+
+	if (win->fract->type == FERN)
+	{
+		if (ydelta > 0)
+			factor = 1.1;
+		else
+			factor = 0.9;
+	}
+	else
+	{
+		if (ydelta > 0)
+			factor = 0.9;
+		else
+			factor = 1.1;
+	}
+	return (factor);
 }
 
 void	ft_scroll_hook(double xdelta, double ydelta, void *param)

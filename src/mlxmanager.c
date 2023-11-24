@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:40:59 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/24 13:35:04 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/24 18:02:27 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	ft_fill_image(t_win *win)
 	t_fract	*fract;
 
 	fract = win->fract;
-	x = 1;
-	y = 1;
+	x = 0;
+	y = 0;
 	while (y < win->height)
 	{
 		x = 0;

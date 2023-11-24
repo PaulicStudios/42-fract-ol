@@ -109,7 +109,6 @@ void			ft_drag_mouse_shift(int mouse_x, int mouse_y, t_win *win);
 bool			ft_key_change_values(mlx_key_data_t keydata, t_win *win);
 void			ft_scroll_not_fern(double *mouse_x, double *mouse_y,
 					double *factor, t_win *win);
-double			ft_get_factor(double ydelta, t_win *win);
 
 //utils.c
 int				ft_get_rgba(int r, int g, int b, int a);
