@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 20:29:43 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/14 13:57:47 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:20:23 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,13 @@ bool	ft_key_change_values(mlx_key_data_t keydata, t_win *win)
 	else
 		return (false);
 	return (true);
+}
+
+void	ft_scroll_not_fern(double *mouse_x, double *mouse_y, double *factor,
+			t_win *win)
+{
+	*mouse_x = *mouse_x - (win->width / 2);
+	*mouse_y = *mouse_y - ((win->height / ((double) win->height / win->width)
+				/ 2));
+	*factor = 1 / *factor;
 }

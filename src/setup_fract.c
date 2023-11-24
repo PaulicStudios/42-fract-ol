@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 20:26:42 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/24 11:47:56 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:03:45 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	ft_setup_fern(t_win *win)
 
 	fract = win->fract;
 	fract->type = FERN;
-	fract->iter_max = 100;
-	win->scale = 4;
-	win->off_x = 0;
-	win->off_y = 0;
+	fract->iter_max = 10000;
+	win->scale = 0.75;
+	win->off_x = -400;
+	win->off_y = -400;
 }

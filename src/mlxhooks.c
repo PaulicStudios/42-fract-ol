@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:53:50 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/14 13:51:45 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:20:49 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,8 @@ void	ft_scroll_hook(double xdelta, double ydelta, void *param)
 	mouse_x = mouse.last_x;
 	mouse_y = mouse.last_y;
 	win->scale *= factor;
-	mouse_x = mouse_x - (win->width / 2);
-	mouse_y = mouse_y - ((win->height / ((double) win->height / win->width)
-				/ 2));
-	factor = 1 / factor;
+	if (win->fract->type != FERN)
+		ft_scroll_not_fern(&mouse_x, &mouse_y, &factor, win);
 	win->off_x = factor * (win->off_x + mouse_x) - mouse_x;
 	win->off_y = factor * (win->off_y + mouse_y) - mouse_y;
 	ft_rebuild_fract(win);
