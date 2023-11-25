@@ -25,7 +25,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 
 clean:
 	make -C $(LIBFT) clean
-	rm -rf $(OBJS)
+	rm -rf ./build
 	rm -rf $(LIBMLX)/build
 
 fclean: clean
