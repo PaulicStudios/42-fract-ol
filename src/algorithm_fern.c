@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 13:29:48 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/24 17:49:59 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/25 12:33:47 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,25 @@ void	ft_fern_transformation(t_fract *fract)
 	}
 }
 
+void	ft_should_fill_white(t_win *win)
+{
+	if (win->old_off_x != win->off_x || win->old_off_y != win->off_y
+		|| win->old_width != win->width || win->old_height != win->height)
+	{
+		win->old_off_x = win->off_x;
+		win->old_off_y = win->off_y;
+		win->old_width = win->width;
+		win->old_height = win->height;
+		ft_fill_white(win);
+	}
+}
+
 void	ft_fill_fern(t_win *win)
 {
 	int		iter;
 	t_fract	*fract;
 
-	ft_fill_white(win);
+	ft_should_fill_white(win);
 	fract = win->fract;
 	iter = 0;
 	while (iter < fract->iter_max)

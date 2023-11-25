@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:53:50 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/24 17:58:40 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/25 12:21:30 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,6 @@ void	ft_loop_hook(void *param)
 	}
 	else
 		win->mouse.button_pressed = false;
+	if (win->fract->type == FERN)
+		ft_fill_fern(win);
 }

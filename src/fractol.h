@@ -60,9 +60,13 @@ struct	s_win
 	mlx_image_t	*image;
 	t_fract		*fract;
 	int			width;
+	int			old_width;
 	int			height;
+	int			old_height;
 	double		off_x;
+	double		old_off_x;
 	double		off_y;
+	double		old_off_y;
 	double		scale;
 	bool		rebuilding;
 	t_mouse		mouse;
