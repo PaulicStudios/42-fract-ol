@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:11:35 by pgrossma          #+#    #+#             */
-/*   Updated: 2023/11/14 13:24:18 by pgrossma         ###   ########.fr       */
+/*   Updated: 2023/11/25 12:37:54 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	ft_parse_options(int argc, char **argv, t_fract *fract)
 			fract->ca = ft_atof(argv[arg + 1]);
 		else if (ft_strncmp(argv[arg], "-cb", 4) == 0)
 			fract->cb = ft_atof(argv[arg + 1]);
+		else
+			ft_print_usage();
 		arg += 2;
 	}
 }
